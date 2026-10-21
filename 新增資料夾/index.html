@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巨擘風華・光被八表 — 孫運璿先生歷史事蹟與數位互動特展</title>
+  <meta name="description" content="本特展深入考證文化部國家文化記憶庫與維基百科史料，以國立臺灣歷史博物館鐵道旅行動態互動為靈感，沉浸式重現一代治國巨擘孫運璿先生點亮全台電網、擘劃重大交通建設、催生半導體科技矽島與清廉自守的不朽風範。">
+  <meta name="keywords" content="孫運璿, 台灣歷史, 國家文化記憶庫, 工研院, 台積電, 小欣欣豆漿店, 新竹科學園區, 十大建設, 台灣電力, 歷史數位特展, 鐵道旅行導覽">
+  <meta property="og:title" content="巨擘風華・光被八表 — 孫運璿先生歷史事蹟與數位互動特展">
+  <meta property="og:description" content="重現一代總工程師孫運璿先生的輝煌事蹟：五個月奇蹟復電、小欣欣豆漿店早餐會、竹科矽島奠基與清廉高潔風骨。">
+  <meta property="og:type" content="website">
+
+  <!-- Google Web Fonts: Noto Serif TC (古典典藏) & Noto Sans TC (俐落介面) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       頂部導覽列 (Site Header)
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand-wrapper">
+        <div class="brand-seal">璿</div>
+        <div class="brand-text">
+          <h1>巨擘風華・光被八表</h1>
+          <p>SUN YUN-SUAN MEMORIAL EXHIBITION</p>
+        </div>
+      </div>
+
+      <!-- 四個分頁標籤按鈕 -->
+      <nav class="nav-tabs" role="tablist" aria-label="展覽主要分頁">
+        <button class="tab-btn active" data-tab="home" id="tab-btn-home" role="tab" aria-selected="true">
+          <span>🏛️</span> 首頁
+        </button>
+        <button class="tab-btn" data-tab="deeds" id="tab-btn-deeds" role="tab" aria-selected="false">
+          <span>📜</span> 事蹟
+        </button>
+        <button class="tab-btn" data-tab="tour" id="tab-btn-tour" role="tab" aria-selected="false">
+          <span>🚂</span> 導覽
+        </button>
+        <button class="tab-btn" data-tab="memorial" id="tab-btn-memorial" role="tab" aria-selected="false">
+          <span>🌿</span> 紀念
+        </button>
+      </nav>
+
+      <!-- 快捷工具 (鳴笛、音效開關、史料來源標記) -->
+      <div class="nav-actions">
+        <button class="icon-btn" id="whistle-btn" title="火車鳴笛聲" aria-label="鳴笛">
+          🔔
+        </button>
+        <button class="icon-btn" id="sound-toggle-btn" title="開啟/關閉導覽音效" aria-label="音效開關">
+          🔊
+        </button>
+        <span class="badge-source" title="史料經文化部國家文化記憶庫與維基百科考證">
+          考證典藏
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       主要內容區 (Main Content - 4 Pages)
+       ======================================================================== -->
+  <main>
+    
+    <!-- ====================================================================
+         第 1 分頁：首頁 (Tab 1: Home)
+         ==================================================================== -->
+    <section class="page-tab-content active" id="tab-home">
+      <div class="main-container">
+        
+        <!-- 巨幅英雄陳列區 -->
+        <div class="hero-section">
+          <div class="hero-text-col">
+            <div class="hero-eyebrow">
+              <span>✦</span> 台灣現代化總工程師・跨越世紀的清流典範
+            </div>
+            <h1 class="hero-title">
+              經緯萬方・<span class="title-highlight">點亮矽島</span><br>
+              孫運璿先生生平特展
+            </h1>
+            <p class="hero-subtitle">
+              自黑水溝畔搶修全台八成電網，至晨光豆漿店敲定半導體宏圖；<br>
+              他以工程師的務實與政治家的風骨，鑄就了台灣半個世紀的繁榮繁花。
+            </p>
+
+            <div class="hero-quote-box">
+              <p class="hero-quote-text">
+                「做官是一時的，做事是一世的；為國家百姓做事，死而後已。」
+              </p>
+              <p class="hero-quote-author">—— 孫運璿（1913 – 2006）</p>
+            </div>
+
+            <div class="hero-btn-group">
+              <button class="btn-primary" data-goto-tab="tour">
+                <span>🚂</span> 啟程時光列車導覽
+              </button>
+              <button class="btn-secondary" data-goto-tab="deeds">
+                <span>📜</span> 瀏覽時代大事春秋
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-image-col">
+            <div class="museum-portrait-frame">
+              <div class="portrait-inner">
+                <img src="assets/images/sun_portrait.jpg" alt="孫運璿先生莊嚴歷史油畫肖像" loading="eager">
+              </div>
+              <div class="portrait-plaque">前行政院長 孫運璿 先生 (1913-2006)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 歷史統計成就面板 -->
+        <div class="stats-banner">
+          <div class="stats-grid" id="home-stats-container">
+            <!-- 由 app.js 動態渲染 -->
+          </div>
+        </div>
+
+        <!-- 四大核心策展主題導引 -->
+        <div class="curation-section">
+          <div class="section-header">
+            <span class="section-tag">CURATION THEMES</span>
+            <h2 class="section-title">四大核心策展視角</h2>
+            <p class="section-desc">透過珍貴歷史文獻、口述檔案與動態場景，重回奠定今日台灣關鍵走向的四大時空座標。</p>
+          </div>
+
+          <div class="curation-grid">
+            <!-- 主題 1 -->
+            <article class="curation-card">
+              <div class="curation-thumb">
+                <img src="assets/images/power_grid_1946.jpg" alt="1946年戰後修復台灣電網">
+                <span class="curation-badge">1946 破除黑暗</span>
+              </div>
+              <div class="curation-body">
+                <h3>點亮島嶼・五個月復電奇蹟</h3>
+                <p>二戰轟炸後全島九成電力癱瘓。孫運璿率領台北工專年輕學子，攀登中央山脈翻修水力渠道，打破日本技師的預言，點亮台灣第一盞燈。</p>
+                <a href="#" class="card-link-btn" data-goto-tab="deeds">深入電網大事紀 ➔</a>
+              </div>
+            </article>
+
+            <!-- 主題 2 -->
+            <article class="curation-card">
+              <div class="curation-thumb">
+                <img src="assets/images/sun_portrait.jpg" alt="交通建設擘劃">
+                <span class="curation-badge">1969 經脈千里</span>
+              </div>
+              <div class="curation-body">
+                <h3>開疆通衢・重大交通擘劃</h3>
+                <p>擔任交通部長期間，力抗眾議推動南北高速公路規劃與縱貫鐵路電氣化先期評估，奠定現代交通動脈，實現貨暢其流。</p>
+                <a href="#" class="card-link-btn" data-goto-tab="deeds">深入交通建設史 ➔</a>
+              </div>
+            </article>
+
+            <!-- 主題 3 -->
+            <article class="curation-card">
+              <div class="curation-thumb">
+                <img src="assets/images/soymilk_meeting_1974.jpg" alt="1974小欣欣豆漿店早餐會">
+                <span class="curation-badge">1974 矽島黎明</span>
+              </div>
+              <div class="curation-body">
+                <h3>晨光豆漿・半導體科技起航</h3>
+                <p>在新生南路一家平凡豆漿店，圍坐吃燒餅的清晨，孫運璿果斷拍板引進RCA積體電路技術，催生工研院與台積電先聲。</p>
+                <a href="#" class="card-link-btn" data-goto-tab="tour">搭乘時光列車探訪 ➔</a>
+              </div>
+            </article>
+
+            <!-- 主題 4 -->
+            <article class="curation-card">
+              <div class="curation-thumb">
+                <img src="assets/images/memorial_hall.jpg" alt="孫運璿科技人文紀念館">
+                <span class="curation-badge">1984 風骨長存</span>
+              </div>
+              <div class="curation-body">
+                <h3>清貧自持・重陽國宅與風骨</h3>
+                <p>一生為官無私無產，卸任後主動退還官舍遷居重陽國宅。台北植物園旁的故居如今化作古蹟紀念館，垂範百世青史。</p>
+                <a href="#" class="card-link-btn" data-goto-tab="memorial">參訪紀念館特展 ➔</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         第 2 分頁：事蹟 (Tab 2: Deeds & Chronology)
+         ==================================================================== -->
+    <section class="page-tab-content" id="tab-deeds">
+      <div class="main-container">
+        
+        <div class="section-header">
+          <span class="section-tag">HISTORICAL MILESTONES & ARCHIVES</span>
+          <h2 class="section-title">經緯春秋・時代大事紀</h2>
+          <p class="section-desc">
+            資料全面考證自<strong>文化部國家文化記憶庫</strong>與<strong>維基百科</strong>。詳細收錄孫運璿先生從北國求學、戰火救急、光復復電、交通擘劃、科技立國至晚年清廉自守之完整歷史編年。
+          </p>
+        </div>
+
+        <!-- 分類過濾篩選器 -->
+        <div class="timeline-filter-bar">
+          <button class="filter-chip active" data-category="all">全部歷史大事</button>
+          <button class="filter-chip" data-category="early">求學與抗戰</button>
+          <button class="filter-chip" data-category="power">電網奇蹟復甦</button>
+          <button class="filter-chip" data-category="transport">交通經脈擘劃</button>
+          <button class="filter-chip" data-category="tech">半導體與工研院</button>
+          <button class="filter-chip" data-category="policy">行政院長盛世</button>
+          <button class="filter-chip" data-category="integrity">清廉風骨典範</button>
+        </div>
+
+        <!-- 垂直大事紀軸線 -->
+        <div class="timeline-track" id="timeline-container">
+          <!-- 由 app.js 動態渲染 -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         第 3 分頁：導覽 (Tab 3: Animated Interactive Tour)
+         參考國立臺灣歷史博物館「快慢之間：臺灣鐵道旅行特展」
+         ==================================================================== -->
+    <section class="page-tab-content" id="tab-tour">
+      <div class="main-container">
+        
+        <div class="section-header">
+          <span class="section-tag">INTERACTIVE RAILWAY VOYAGE</span>
+          <h2 class="section-title">光之軌道・時光列車動態導覽</h2>
+          <p class="section-desc">
+            借鑑國立臺灣歷史博物館鐵道特展互動形式。請搭上「光之旅號」時光列車，沿著現代化軌道巡禮五大歷史車站，點擊展品熱點探索歷史原貌，收集站點專屬紀念印章！
+          </p>
+        </div>
+
+        <!-- 鐵道導覽主體組件 -->
+        <div class="tour-wrapper">
+          
+          <!-- 頂部車站軌道與進度條 -->
+          <div class="railway-station-bar">
+            <div class="station-track-line">
+              <div class="station-progress-fill" id="station-progress" style="width: 0%;"></div>
+              <div class="train-indicator" id="train-indicator" style="left: 0%;">🚂</div>
+              <div class="station-stops-flex" id="station-stops-container" style="display: contents;">
+                <!-- 由 app.js 動態生成 5 個站點 -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 動態全景舞台與文物熱點 (Scene Stage) -->
+          <div class="tour-stage">
+            <div class="stage-bg" id="stage-bg"></div>
+            <div class="stage-overlay"></div>
+
+            <!-- 可互動發光脈衝文物熱點 (Hotspots) -->
+            <div id="hotspots-container">
+              <!-- 由 app.js 動態注入當站熱點 -->
+            </div>
+
+            <!-- 舞台說明浮層面板 -->
+            <div class="stage-narrative-card">
+              <div id="stage-narrative">
+                <!-- 由 app.js 動態填入當前車站敘事 -->
+              </div>
+
+              <!-- 導覽控制器工具條 -->
+              <div class="stage-controls-bar">
+                <div class="nav-station-btns">
+                  <button class="btn-station-nav" id="btn-prev-station" disabled>
+                    ◀ 前一站
+                  </button>
+                  <button class="btn-station-nav" id="btn-next-station">
+                    下一站 ▶
+                  </button>
+                  <button class="btn-station-nav" id="btn-auto-tour">
+                    ▶ 開始自動巡航
+                  </button>
+                </div>
+
+                <button class="btn-stamp-action" id="btn-stamp-action">
+                  <span>💮</span> 蓋上此站探索戳章
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 鐵道旅行專屬：復古硬紙乘車券 與 探索集章手冊 -->
+        <div class="tour-extras-grid">
+          
+          <!-- 仿 Edmondson 經典硬紙火車票 -->
+          <div class="vintage-ticket-card">
+            <div class="ticket-header-row">
+              <span class="ticket-railway-title">臺灣現代化時光鐵道・特等乘車證</span>
+              <span class="ticket-serial">NO. 1913-2006</span>
+            </div>
+
+            <div class="ticket-journey">
+              <div class="station-point">
+                <h4>蓬萊・哈工大</h4>
+                <p>啟程起點站</p>
+              </div>
+              <div class="journey-arrow">➔</div>
+              <div class="station-point">
+                <h4>日月潭・竹科</h4>
+                <p>中途行經關鍵站</p>
+              </div>
+              <div class="journey-arrow">➔</div>
+              <div class="station-point">
+                <h4>仰高重陽</h4>
+                <p>終點豐碑站</p>
+              </div>
+            </div>
+
+            <div class="ticket-meta-grid">
+              <div>
+                <label style="font-size: 0.75rem; color: #78350f; display: block; margin-bottom: 2px;">乘車旅人姓名：</label>
+                <input type="text" id="ticket-passenger-input" class="ticket-passenger-input" value="探索旅人" placeholder="請輸入您的姓名">
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.75rem; color: #78350f; display: block; margin-bottom: 2px;">當前乘車人：</span>
+                <strong id="ticket-passenger-display" style="font-size: 1.1rem; color: #b91c1c;">探索旅人</strong>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: #78350f;">席位等級：</span>
+                <strong>頭等敬仰座</strong>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.75rem; color: #78350f;">票面面額：</span>
+                <strong>無私奉獻・無價</strong>
+              </div>
+            </div>
+
+            <div class="ticket-footer-actions">
+              <div class="ticket-barcode">|||| | | ||| | ||||| || | ||| ||||</div>
+              <button class="btn-print-ticket" id="btn-print-ticket">
+                🖨️ 列印/保存專屬紀念票
+              </button>
+            </div>
+          </div>
+
+          <!-- 集章手冊網格 -->
+          <div class="stamp-collector-book">
+            <div class="collector-title">
+              <h3>💮 探索印記・歷史車站戳印冊</h3>
+              <span class="collector-status" id="collector-count-status">已收集 0 / 5 枚</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              造訪每個車站，按下「蓋上此站探索戳章」，集滿即可點亮乘車證的所有歷史印記！
+            </p>
+            <div class="stamp-grid" id="stamp-grid">
+              <!-- 由 app.js 動態渲染 5 個站章凹槽 -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         第 4 分頁：紀念 (Tab 4: Memorial Hall & Legacy)
+         ==================================================================== -->
+    <section class="page-tab-content" id="tab-memorial">
+      <div class="main-container">
+        
+        <!-- 紀念館介紹橫幅卡 -->
+        <div class="memorial-hero-card">
+          <img src="assets/images/memorial_hall.jpg" alt="台北植物園旁孫運璿科技人文紀念館" class="memorial-banner-img">
+          <div class="memorial-hero-overlay">
+            <h2>孫運璿科技人文紀念館</h2>
+            <p>台北市市定古蹟・重慶南路二段6巷10號（鄰近台北植物園）</p>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-tag">HISTORIC RESIDENCE & EXHIBITS</span>
+          <h2 class="section-title">走入歷史現場・官邸特展導覽</h2>
+          <p class="section-desc">
+            原為行政院長官邸，和洋混融式日治風貌與蒼翠繁茂的百年庭園相輝映。這裡曾是孫院長公務擘劃的決策核心，亦是他晚年以堅定意志復健之所。
+          </p>
+        </div>
+
+        <!-- 紀念館四大展區網格 -->
+        <div class="zones-grid">
+          <div class="zone-card">
+            <div class="zone-icon">🏛️</div>
+            <h3>洋館公務廳（決策中心）</h3>
+            <p>曾接待海內外重要政要、科學家與企業家。保留孫院長手寫施政備忘錄、決策沙發與國際勳章。</p>
+            <div class="zone-highlight">✦ 特展亮點：台積電籌建秘密會議記錄影本草案</div>
+          </div>
+
+          <div class="zone-card">
+            <div class="zone-icon">🍵</div>
+            <h3>和館起居室（平淡生活）</h3>
+            <p>鋪設傳統榻榻米與推拉紙門，展現孫夫人與子女質樸恬淡的日常生活陳設與舊收音機。</p>
+            <div class="zone-highlight">✦ 特展亮點：使用近三十年未換的手工老木櫃</div>
+          </div>
+
+          <div class="zone-card">
+            <div class="zone-icon">🎥</div>
+            <h3>特展互動館（現代多媒體）</h3>
+            <p>運用環景投影與互動螢幕，重現1946年台電搶修圖面與1974年小欣欣豆漿店對話原音情境。</p>
+            <div class="zone-highlight">✦ 特展亮點：全景時空沉浸體驗</div>
+          </div>
+
+          <div class="zone-card">
+            <div class="zone-icon">🌲</div>
+            <h3>生態沉思庭園（百年老樹）</h3>
+            <p>園內植有高聳的老榕、百年楓香與竹林，綠意盎然，為參觀者提供安寧沉思與追憶之空間。</p>
+            <div class="zone-highlight">✦ 特展亮點：孫院長生前每日推輪椅散步之石徑</div>
+          </div>
+        </div>
+
+        <!-- 泰斗名人評價語錄 -->
+        <div class="section-header">
+          <span class="section-tag">TESTIMONIALS & MEMORIES</span>
+          <h2 class="section-title">跨越黨派的景仰・世紀巨擘迴響</h2>
+          <p class="section-desc">政界泰斗、科技業界拓荒者與文化界領袖對孫運璿先生的真情緬懷。</p>
+        </div>
+
+        <div class="quotes-grid">
+          <div class="quote-card">
+            <div class="quote-content">
+              「如果沒有孫運璿院長與李國鼎資政當年的遠見與無私魄力，就不可能有今天的台積電，也不可能有台灣今日在全世界舉足輕重的半導體矽盾。」
+            </div>
+            <div class="quote-author-info">
+              <div class="quote-author-name">張忠謀 博士</div>
+              <div class="quote-author-role">台積電創辦人・半導體教父</div>
+            </div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-content">
+              「孫院長以工程師的務實與科學家的誠實來治理國家，給予民間企業最大的發揮空間，他是台灣走向現代化最受敬重的一代總工程師。」
+            </div>
+            <div class="quote-author-info">
+              <div class="quote-author-name">施振榮 先生</div>
+              <div class="quote-author-role">宏碁集團創辦人・科技產業拓荒者</div>
+            </div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-content">
+              「孫運璿先生一生為官清廉自律，退隱後住在重陽國宅，無半點特權。他的風骨不僅是政治家的典範，更是台灣最珍貴的人格資產。」
+            </div>
+            <div class="quote-author-info">
+              <div class="quote-author-name">嚴長壽 先生</div>
+              <div class="quote-author-role">公益平台文化基金會董事長</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 歷史互動知識挑戰 (Quiz) -->
+        <div class="quiz-section">
+          <div class="quiz-header">
+            <span class="section-tag">HISTORY KNOWLEDGE CHALLENGE</span>
+            <h2 class="section-title">歷史探索挑戰・時空記憶考驗</h2>
+            <p class="section-desc">回答五道精選歷史問答題，檢驗您對孫運璿先生歷史事蹟的了解程度！</p>
+          </div>
+
+          <div class="quiz-container">
+            <div id="quiz-box">
+              <!-- 由 app.js 動態渲染問題與選項 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 歷史迴響數位留言簿 (Guestbook) -->
+        <div class="guestbook-section">
+          <div class="section-header">
+            <span class="section-tag">COMMEMORATIVE GUESTBOOK</span>
+            <h2 class="section-title">向巨擘致敬・歷史迴響留言簿</h2>
+            <p class="section-desc">留下您對孫運璿先生為國奉獻精神的感念，留言將永久陳列於數位紀念牆。</p>
+          </div>
+
+          <form class="guestbook-form" id="guestbook-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label for="msg-name">您的稱呼 / 姓名：</label>
+                <input type="text" id="msg-name" class="input-field" placeholder="例如：林工程師、陳同學" required>
+              </div>
+              <div class="input-group">
+                <label for="msg-location">所在縣市 / 單位：</label>
+                <input type="text" id="msg-location" class="input-field" placeholder="例如：新竹科學園區、台北市">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="msg-content">致敬感言：</label>
+              <textarea id="msg-content" class="input-field" placeholder="請寫下您的參訪心得或對孫運璿先生的致敬之意..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="align-self: flex-start;">
+              ✍️ 提交致敬留言
+            </button>
+          </form>
+
+          <div class="messages-grid" id="messages-list">
+            <!-- 由 app.js 動態渲染留言清單 -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       文物解密彈窗 (Hotspot Modal)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="hotspot-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="關閉彈窗">✕</button>
+      <span class="modal-tag" id="modal-tag">歷史史料</span>
+      <h3 class="modal-title" id="modal-title">展品名稱</h3>
+      <p class="modal-body-text" id="modal-body-text">展品詳細內容說明...</p>
+      <div class="modal-source-meta">
+        <span>📜 考證來源：文化部國家文化記憶庫 典藏檔案與維基百科</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       頁尾 (Site Footer)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-quote">「為國家多做一點事，替老百姓多解決一點困難，這才是生命的價值。」</p>
+      
+      <div class="footer-refs">
+        <span>史料參考：</span>
+        <a href="https://memory.culture.tw/" target="_blank" rel="noopener noreferrer">文化部國家文化記憶庫</a>
+        <span>・</span>
+        <a href="https://zh.wikipedia.org/wiki/%E5%AD%AB%E9%81%8B%E7%92%BF" target="_blank" rel="noopener noreferrer">維基百科：孫運璿</a>
+        <span>・</span>
+        <a href="https://sunyunsuan.org.tw/" target="_blank" rel="noopener noreferrer">孫運璿科技人文紀念館</a>
+        <span>・</span>
+        <a href="https://vr.nmth.gov.tw/railwaytravel/" target="_blank" rel="noopener noreferrer">國立臺灣歷史博物館 鐵道旅行特展</a>
+      </div>
+
+      <p class="footer-copy">
+        © 2026 巨擘風華・孫運璿先生歷史事蹟數位互動特展 | 國立數位人文典藏互動專案
+      </p>
+    </div>
+  </footer>
+
+  <!-- 引用腳本庫 -->
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

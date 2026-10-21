@@ -1,0 +1,2061 @@
+/* ==========================================================================
+   巨擘風華・光被八表 — 孫運璿先生歷史事蹟數位互動特展
+   視覺風格：臺灣歷史復古文獻風（臺灣歷史博物館 × 復古鐵道旅行 × 典藏老紙墨香）
+   ========================================================================== */
+
+:root {
+  /* 臺灣歷史復古色系體系 */
+  --bg-vintage: #f5eedc;          /* 典藏宣紙／陳年老書頁米色 */
+  --bg-paper: #faf6ec;            /* 溫潤楮皮紙 */
+  --bg-paper-dark: #ecdfc8;       /* 懷舊牛皮硬紙 */
+  --bg-card: #fdfbf5;             /* 展覽展台純淨老紙卡 */
+  --bg-card-hover: #ffffff;
+  --bg-overlay: rgba(43, 34, 25, 0.75);
+
+  --border-vintage: #cfbd9f;      /* 仿古老書邊框色 */
+  --border-dark: #8b7355;         /* 鐵道銅件與木質深框 */
+  --border-fine: #dfd1b8;         /* 細緻雙線條 */
+
+  --text-ink: #231b15;            /* 松煙濃墨（深沈易讀） */
+  --text-ink-soft: #42362b;       /* 焙茶墨色 */
+  --text-muted: #6e5f50;          /* 老報紙內文鉛灰 */
+  --text-light: #968674;          /* 水墨淡灰 */
+
+  /* 臺灣歷史文化標誌色 */
+  --tw-red: #a32828;              /* 傳統紅磚／朱砂印泥紅 */
+  --tw-red-dark: #7a1c1c;
+  --tw-red-light: #c84343;
+  --tw-red-wash: rgba(163, 40, 40, 0.08);
+
+  --tw-green: #234839;            /* 臺灣老鐵道深墨綠／檜木蒼翠 */
+  --tw-green-light: #346350;
+  --tw-green-wash: rgba(35, 72, 57, 0.08);
+
+  --brass-gold: #b38234;          /* 復古黃銅／金茶 */
+  --brass-light: #d8a655;
+  --brass-dark: #785318;
+  --brass-glow: rgba(179, 130, 52, 0.25);
+
+  --wood-brown: #3d2c1e;          /* 台灣檜木／胡桃木色 */
+  --wood-light: #6b513a;
+
+  --ticket-paper: #ecdab4;        /* Edmondson 復古硬卡火車票專用紙 */
+  --ticket-ink: #2b1b0b;
+  --ticket-border: #a48256;
+
+  /* 字體堆疊 */
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'MingLiU', serif;
+  --font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Courier Prime', 'Space Mono', monospace;
+
+  /* 倒角與過渡 */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+
+  --shadow-subtle: 0 4px 15px rgba(60, 45, 30, 0.08);
+  --shadow-card: 0 8px 24px rgba(60, 45, 30, 0.12);
+  --shadow-float: 0 16px 36px rgba(45, 32, 20, 0.18);
+  --shadow-wood: 0 10px 30px rgba(35, 25, 15, 0.25);
+}
+
+/* ==========================================================================
+   全域基本設定 (紙質紋理與淡墨排版)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-vintage);
+  color: var(--text-ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+  /* 台灣古樸老紙質紋理漸層 */
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(179, 130, 52, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 88% 82%, rgba(163, 40, 40, 0.05) 0%, transparent 45%),
+    linear-gradient(to bottom, #f7f0e0 0%, #f3ebda 50%, #eee3cb 100%);
+  min-height: 100vh;
+}
+
+/* 捲軸古典美化 */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 4px;
+  border: 2px solid var(--bg-paper-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wood-brown);
+}
+
+/* 文字排版 */
+h1, h2, h3, h4, .serif-font {
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+  color: var(--wood-brown);
+}
+
+p {
+  color: var(--text-ink-soft);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   頂部導覽列 (臺灣歷史人文館匾額風)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247, 241, 230, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 2px solid var(--border-dark);
+  box-shadow: 0 4px 18px rgba(60, 45, 30, 0.08);
+}
+
+.nav-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 復古篆刻朱砂印章 */
+.brand-seal {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--tw-red), #7c1a1a);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  box-shadow: 0 3px 10px rgba(163, 40, 40, 0.35);
+  border: 2px solid #571313;
+  letter-spacing: 0.05em;
+  transform: rotate(-1.5deg);
+}
+
+.brand-text h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--wood-brown);
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+}
+
+.brand-text p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+/* 四大分頁導航標籤（仿臺灣鐵道木刻銘牌／復古車票標籤） */
+.nav-tabs {
+  display: flex;
+  background: var(--bg-paper-dark);
+  border: 1px solid var(--border-dark);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  gap: 4px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.tab-btn {
+  padding: 0.45rem 1.25rem;
+  border-radius: var(--radius-full);
+  color: var(--text-ink-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--tw-red);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.tab-btn.active {
+  background: var(--tw-green);
+  color: #f7f3e8;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(35, 72, 57, 0.35);
+}
+
+/* 導覽列工具按鈕 (復古銅金鈕) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-dark);
+  background: var(--bg-paper);
+  color: var(--wood-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition-fast);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+.icon-btn:hover {
+  background: var(--tw-red);
+  color: #fff;
+  border-color: var(--tw-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(163, 40, 40, 0.25);
+}
+
+.icon-btn.muted {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.badge-source {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--tw-red-wash);
+  border: 1px solid var(--tw-red);
+  border-radius: var(--radius-xs);
+  color: var(--tw-red);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   分頁內容容器
+   ========================================================================== */
+.page-tab-content {
+  display: none;
+  animation: fadeInRetro 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInRetro {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* ==========================================================================
+   第 1 分頁：首頁 (Hero & Overview)
+   臺灣歷史畫報風格／老報紙雙重外框
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 2.5rem 0;
+}
+
+.hero-text-col {
+  flex: 1.15;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--tw-red);
+  background: var(--tw-red-wash);
+  border: 1px solid rgba(163, 40, 40, 0.35);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--wood-brown);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-title .title-highlight {
+  color: var(--tw-red);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .title-highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(216, 166, 85, 0.4);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.hero-subtitle {
+  font-size: 1.18rem;
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  margin-bottom: 1.75rem;
+  border-left: 4px solid var(--brass-gold);
+  padding-left: 1rem;
+  line-height: 1.65;
+}
+
+/* 復古語錄木匾卡 */
+.hero-quote-box {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 1.35rem 1.75rem;
+  margin-bottom: 2.2rem;
+  position: relative;
+  box-shadow: var(--shadow-subtle);
+}
+
+.hero-quote-box::before {
+  content: "“";
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  font-size: 3.5rem;
+  font-family: var(--font-serif);
+  color: var(--tw-red);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.hero-quote-text {
+  font-size: 1.1rem;
+  color: var(--wood-brown);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-quote-author {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.hero-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* 復古綠漆火車／郵務紅按鈕 */
+.btn-primary {
+  background: var(--tw-green);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 14px rgba(35, 72, 57, 0.3);
+  border: 1px solid var(--tw-green-light);
+  transition: var(--transition-normal);
+}
+
+.btn-primary:hover {
+  background: var(--tw-green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(35, 72, 57, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-paper);
+  border: 1.5px solid var(--border-dark);
+  color: var(--wood-brown);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-paper-dark);
+  border-color: var(--wood-brown);
+  color: var(--tw-red);
+  transform: translateY(-2px);
+}
+
+/* 復古金邊老相框陳列 */
+.hero-image-col {
+  flex: 0.85;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.museum-portrait-frame {
+  position: relative;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  background: linear-gradient(145deg, #443224, #261910 50%, #523e2e);
+  box-shadow: var(--shadow-wood);
+  border: 3px solid var(--brass-gold);
+  max-width: 440px;
+  width: 100%;
+}
+
+.portrait-inner {
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 2px solid #8e6c38;
+}
+
+.portrait-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: contrast(1.04) sepia(0.08);
+  transition: transform 0.8s ease;
+}
+
+.museum-portrait-frame:hover .portrait-inner img {
+  transform: scale(1.03);
+}
+
+.portrait-plaque {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #d8a655, #9b6b23);
+  padding: 6px 22px;
+  border-radius: 3px;
+  color: #1a1005;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #fae29c;
+}
+
+/* 核心統計指標面板 (仿老式日曆計數牌) */
+.stats-banner {
+  margin-top: 3.5rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  position: relative;
+  padding: 1rem;
+  border-right: 1px dashed var(--border-vintage);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--tw-red);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--wood-brown);
+  margin-bottom: 0.3rem;
+}
+
+.stat-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* 四大主題策展卡片 (臺灣歷史文化圖錄風) */
+.curation-section {
+  margin-top: 5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-header::after {
+  content: "✦ ✦ ✦";
+  display: block;
+  font-size: 0.85rem;
+  color: var(--brass-gold);
+  margin-top: 0.75rem;
+  letter-spacing: 0.5em;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--tw-red);
+  letter-spacing: 0.25em;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--wood-brown);
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+
+.section-desc {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--text-ink-soft);
+}
+
+.curation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+.curation-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+}
+
+.curation-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--tw-red);
+  box-shadow: var(--shadow-float);
+  background: var(--bg-card-hover);
+}
+
+.curation-thumb {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: #1e1610;
+  border-bottom: 1px solid var(--border-vintage);
+}
+
+.curation-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.02) sepia(0.06);
+  transition: transform 0.6s ease;
+}
+
+.curation-card:hover .curation-thumb img {
+  transform: scale(1.06);
+}
+
+.curation-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(247, 240, 226, 0.95);
+  border: 1.5px solid var(--wood-brown);
+  color: var(--wood-brown);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.curation-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.curation-body h3 {
+  font-size: 1.25rem;
+  color: var(--wood-brown);
+  margin-bottom: 0.6rem;
+  font-weight: 800;
+}
+
+.curation-body p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+  color: var(--text-ink-soft);
+}
+
+.card-link-btn {
+  color: var(--tw-red);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s ease;
+}
+
+.card-link-btn:hover {
+  color: var(--tw-red-dark);
+  gap: 0.7rem;
+}
+
+/* ==========================================================================
+   第 2 分頁：事蹟（編年史春秋・老報紙／歷史檔案館考證）
+   ========================================================================== */
+.timeline-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 3.5rem;
+  justify-content: center;
+}
+
+.filter-chip {
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-paper);
+  border: 1.5px solid var(--border-dark);
+  color: var(--wood-brown);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-fast);
+}
+
+.filter-chip:hover {
+  background: var(--bg-paper-dark);
+  color: var(--tw-red);
+  border-color: var(--tw-red);
+}
+
+.filter-chip.active {
+  background: var(--tw-red);
+  color: #fff;
+  font-weight: 700;
+  border-color: var(--tw-red-dark);
+  box-shadow: 0 3px 10px rgba(163, 40, 40, 0.3);
+}
+
+/* 垂直編年史軸線（復古銅軌與木扣） */
+.timeline-track {
+  position: relative;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-dark),
+    var(--border-dark) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+.timeline-node {
+  position: relative;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.timeline-node:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.node-bullet {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  transform: translate(-50%, 0);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--brass-gold);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--border-dark), 0 3px 8px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  transition: var(--transition-fast);
+}
+
+.timeline-node:hover .node-bullet {
+  background: var(--tw-red);
+  transform: translate(-50%, 0) scale(1.25);
+}
+
+.node-card {
+  width: calc(50% - 40px);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  outline: 2px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 1.85rem;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-normal);
+}
+
+.timeline-node:hover .node-card {
+  border-color: var(--tw-red);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-3px);
+  background: var(--bg-card-hover);
+}
+
+.node-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+.node-year {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--tw-red);
+}
+
+.node-period-tag {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  background: var(--tw-green-wash);
+  color: var(--tw-green);
+  border: 1px solid var(--tw-green);
+  font-weight: 700;
+}
+
+.node-title {
+  font-size: 1.35rem;
+  color: var(--wood-brown);
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.node-summary {
+  font-size: 0.98rem;
+  color: var(--text-ink);
+  margin-bottom: 1.25rem;
+  line-height: 1.65;
+}
+
+.node-details-list {
+  list-style: none;
+  border-top: 1px dashed var(--border-vintage);
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.node-details-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--text-ink-soft);
+  margin-bottom: 0.65rem;
+  line-height: 1.6;
+}
+
+.node-details-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--brass-gold);
+  font-size: 0.7rem;
+  top: 1px;
+}
+
+.node-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-vintage);
+}
+
+.source-pill {
+  font-size: 0.75rem;
+  color: var(--wood-brown);
+  background: var(--bg-paper-dark);
+  border: 1px solid var(--border-dark);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   第 3 分頁：動畫互動導覽（參考臺灣鐵道旅行特展復古風格）
+   ========================================================================== */
+.tour-wrapper {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 3px solid var(--wood-brown);
+  outline: 4px double var(--border-vintage);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-wood);
+}
+
+/* 復古車站軌道指引線 (Vintage Taiwan Railway Station Line) */
+.railway-station-bar {
+  background: #2a1f16;
+  border-bottom: 3px solid var(--brass-gold);
+  padding: 1.5rem 1.5rem 1.25rem;
+  position: relative;
+  overflow-x: auto;
+}
+
+.station-track-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  min-width: 720px;
+  margin: 0 2rem;
+}
+
+.station-track-line::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #503d2e;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.station-progress-fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--brass-gold), #e8be77);
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(216, 166, 85, 0.6);
+}
+
+.station-stop {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+/* 鐵道車站站牌圓標（琺瑯磁牌） */
+.station-stop-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1c140d;
+  border: 3px solid #8e735d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dfcdbd;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  transition: var(--transition-normal);
+}
+
+.station-stop:hover .station-stop-circle {
+  border-color: var(--brass-light);
+  transform: scale(1.15);
+}
+
+.station-stop.active .station-stop-circle {
+  background: var(--tw-red);
+  border-color: #fff;
+  color: #fff;
+  transform: scale(1.25);
+  box-shadow: 0 0 15px rgba(200, 67, 67, 0.8);
+}
+
+.station-stop-name {
+  font-size: 0.9rem;
+  color: #cfbfb0;
+  font-family: var(--font-serif);
+  white-space: nowrap;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.station-stop.active .station-stop-name {
+  color: #fae4a7;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.station-stop-year {
+  font-size: 0.75rem;
+  color: #9c8774;
+  font-family: var(--font-mono);
+}
+
+.station-stop.active .station-stop-year {
+  color: var(--brass-light);
+}
+
+/* 軌道列車動態指針 (復古火車頭) */
+.train-indicator {
+  position: absolute;
+  top: -26px;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  z-index: 4;
+  transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+/* 互動全景展示舞台 (Scene Stage) */
+.tour-stage {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.stage-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s ease, filter 0.8s ease;
+  filter: brightness(0.85) contrast(1.05) sepia(0.08);
+}
+
+.stage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 31, 22, 0.25) 0%,
+    rgba(42, 31, 22, 0.15) 40%,
+    rgba(42, 31, 22, 0.9) 100%
+  );
+  pointer-events: none;
+}
+
+/* 復古文物熱點 (Glowing Brass & Wax Hotspots) */
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(179, 130, 52, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.2s ease;
+}
+
+.hotspot-pin:hover {
+  transform: translate(-50%, -50%) scale(1.22);
+}
+
+.hotspot-core {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--tw-red);
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px rgba(163, 40, 40, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.hotspot-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--brass-light);
+  animation: pulseRetro 2s infinite ease-out;
+}
+
+@keyframes pulseRetro {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+
+.hotspot-label-preview {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a1e14;
+  border: 1px solid var(--brass-gold);
+  color: #f7ede1;
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.hotspot-pin:hover .hotspot-label-preview {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* 舞台歷史說明面板 (臺灣老式展示木牌卡) */
+.stage-narrative-card {
+  position: relative;
+  z-index: 10;
+  max-width: 780px;
+  margin: 1.5rem;
+  background: rgba(253, 251, 245, 0.96);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 1.75rem 2.2rem;
+  box-shadow: var(--shadow-wood);
+}
+
+.station-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.station-code-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--tw-red);
+  color: #fff;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+}
+
+.station-year-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--tw-green);
+  background: var(--tw-green-wash);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--tw-green);
+  font-weight: 700;
+}
+
+.stage-station-title {
+  font-size: 1.85rem;
+  color: var(--wood-brown);
+  margin-bottom: 0.35rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.stage-station-subtitle {
+  font-size: 1.05rem;
+  color: var(--tw-red);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 0.95rem;
+}
+
+.stage-station-desc {
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: var(--text-ink);
+  margin-bottom: 1.5rem;
+}
+
+/* 導覽控制器欄位 */
+.stage-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px dashed var(--border-vintage);
+  padding-top: 1.1rem;
+}
+
+.nav-station-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-station-nav {
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-paper-dark);
+  border: 1.5px solid var(--border-dark);
+  color: var(--wood-brown);
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-fast);
+}
+
+.btn-station-nav:hover:not(:disabled) {
+  background: var(--tw-green);
+  color: #fff;
+  border-color: var(--tw-green-light);
+}
+
+.btn-station-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-stamp-action {
+  padding: 0.55rem 1.5rem;
+  border-radius: var(--radius-xs);
+  background: var(--tw-red);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(163, 40, 40, 0.35);
+  border: 1px solid var(--tw-red-dark);
+  transition: var(--transition-fast);
+}
+
+.btn-stamp-action:hover {
+  background: var(--tw-red-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(163, 40, 40, 0.45);
+}
+
+.btn-stamp-action.stamped {
+  background: var(--bg-paper-dark);
+  color: var(--text-muted);
+  border-color: var(--border-dark);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   鐵道旅行特展：Edmondson 經典硬紙乘車券 與 探索集章冊
+   ========================================================================== */
+.tour-extras-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+/* 仿台鐵經典硬卡車票 (Edmondson Railway Ticket) */
+.vintage-ticket-card {
+  background: var(--ticket-paper);
+  color: var(--ticket-ink);
+  border-radius: var(--radius-xs);
+  padding: 1.85rem;
+  position: relative;
+  box-shadow: var(--shadow-card);
+  border: 2px dashed var(--ticket-border);
+  font-family: var(--font-serif);
+  overflow: hidden;
+}
+
+.vintage-ticket-card::before, .vintage-ticket-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  background: var(--bg-vintage);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  border: 2px dashed var(--ticket-border);
+}
+.vintage-ticket-card::before { left: -14px; }
+.vintage-ticket-card::after { right: -14px; }
+
+.ticket-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--ticket-ink);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.1rem;
+}
+
+.ticket-railway-title {
+  font-size: 1.18rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--wood-brown);
+}
+
+.ticket-serial {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--tw-red);
+}
+
+.ticket-journey {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.station-point h4 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ticket-ink);
+}
+
+.station-point p {
+  font-size: 0.8rem;
+  color: #634b35;
+}
+
+.journey-arrow {
+  font-size: 1.8rem;
+  color: var(--tw-red);
+}
+
+.ticket-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  font-size: 0.88rem;
+  border-top: 1px dotted var(--ticket-border);
+  padding-top: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.ticket-passenger-input {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--ticket-border);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: var(--ticket-ink);
+  font-weight: 700;
+}
+
+.ticket-passenger-input:focus {
+  outline: none;
+  border-color: var(--tw-red);
+}
+
+.ticket-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2px solid var(--ticket-ink);
+  padding-top: 0.85rem;
+}
+
+.ticket-barcode {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: #3b2c1d;
+  font-weight: 700;
+}
+
+.btn-print-ticket {
+  background: var(--tw-green);
+  color: #fff;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: var(--transition-fast);
+}
+
+.btn-print-ticket:hover {
+  background: var(--tw-green-light);
+}
+
+/* 探索集章本 (Stamp Collector Book) */
+.stamp-collector-book {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 1.85rem;
+  box-shadow: var(--shadow-card);
+}
+
+.collector-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-vintage);
+  padding-bottom: 0.75rem;
+}
+
+.collector-title h3 {
+  font-size: 1.25rem;
+  color: var(--wood-brown);
+  font-weight: 800;
+}
+
+.collector-status {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--tw-red);
+  font-weight: 800;
+}
+
+.stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  gap: 1rem;
+}
+
+.stamp-slot {
+  height: 115px;
+  border: 2px dashed var(--border-dark);
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  position: relative;
+  background: var(--bg-paper);
+  transition: var(--transition-fast);
+}
+
+.stamp-slot.stamped {
+  border-style: solid;
+  border-color: var(--tw-red);
+  background: var(--tw-red-wash);
+}
+
+.stamp-ink-seal {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2.5px solid var(--tw-red);
+  color: var(--tw-red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  transform: rotate(-6deg);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stamp-slot.stamped .stamp-ink-seal {
+  opacity: 0.92;
+  transform: rotate(-6deg) scale(1);
+}
+
+.stamp-slot-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* ==========================================================================
+   第 4 分頁：紀念特展與人文遺產 (Memorial Hall & Legacy)
+   ========================================================================== */
+.memorial-hero-card {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 3px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-wood);
+}
+
+.memorial-banner-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.04) sepia(0.06);
+  display: block;
+}
+
+.memorial-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  background: linear-gradient(to top, rgba(38, 27, 18, 0.95), transparent);
+}
+
+.memorial-hero-overlay h2 {
+  font-size: 2.3rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.memorial-hero-overlay p {
+  color: #fae4a7;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+}
+
+/* 紀念館四大展區網格 */
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 4.5rem;
+}
+
+.zone-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 1.85rem;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-normal);
+}
+
+.zone-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--tw-red);
+  box-shadow: var(--shadow-card);
+}
+
+.zone-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.zone-card h3 {
+  font-size: 1.3rem;
+  color: var(--wood-brown);
+  margin-bottom: 0.65rem;
+  font-weight: 800;
+}
+
+.zone-card p {
+  font-size: 0.93rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-ink-soft);
+}
+
+.zone-highlight {
+  font-size: 0.82rem;
+  color: var(--tw-green);
+  background: var(--tw-green-wash);
+  border-left: 3px solid var(--tw-green);
+  padding: 0.45rem 0.75rem;
+  font-weight: 700;
+}
+
+/* 泰斗名人評價卡片 */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 4.5rem;
+}
+
+.quote-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  outline: 2px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 1.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-subtle);
+}
+
+.quote-content {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--text-ink);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.quote-author-info {
+  border-top: 1px dashed var(--border-vintage);
+  padding-top: 0.85rem;
+}
+
+.quote-author-name {
+  font-weight: 800;
+  color: var(--tw-red);
+  font-size: 1rem;
+}
+
+.quote-author-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 歷史知識測驗區 (Quiz Arena) */
+.quiz-section {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 2.75rem 2rem;
+  margin-bottom: 4.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.quiz-question-box {
+  background: var(--bg-paper);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 1.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-q-num {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--tw-red);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-q-title {
+  font-size: 1.25rem;
+  color: var(--wood-brown);
+  line-height: 1.55;
+  font-weight: 800;
+}
+
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-option-btn {
+  padding: 0.95rem 1.35rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  color: var(--text-ink);
+  text-align: left;
+  font-size: 0.98rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-fast);
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--tw-red);
+  background: var(--bg-paper-dark);
+  color: var(--tw-red);
+}
+
+.quiz-option-btn.correct {
+  background: rgba(35, 72, 57, 0.12);
+  border-color: var(--tw-green);
+  color: var(--tw-green);
+  font-weight: 800;
+}
+
+.quiz-option-btn.wrong {
+  background: rgba(163, 40, 40, 0.12);
+  border-color: var(--tw-red);
+  color: var(--tw-red);
+  font-weight: 800;
+}
+
+.quiz-feedback {
+  background: var(--bg-paper);
+  border-left: 4px solid var(--brass-gold);
+  padding: 1.15rem 1.35rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.93rem;
+  color: var(--text-ink);
+  display: none;
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+  animation: fadeInRetro 0.3s ease;
+}
+
+.quiz-next-btn {
+  width: 100%;
+}
+
+/* 歷史致敬留言簿 (Memorial Guestbook) */
+.guestbook-section {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  outline: 3px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  padding: 2.75rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.guestbook-form {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.input-group label {
+  font-size: 0.88rem;
+  color: var(--wood-brown);
+  font-weight: 700;
+}
+
+.input-field {
+  padding: 0.85rem 1.1rem;
+  background: var(--bg-paper);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  color: var(--text-ink);
+  font-size: 0.98rem;
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--tw-red);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(163, 40, 40, 0.2);
+}
+
+textarea.input-field {
+  resize: vertical;
+  min-height: 95px;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.35rem;
+}
+
+.message-card {
+  background: var(--bg-paper);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+  border-bottom: 1px dashed var(--border-vintage);
+  padding-bottom: 0.45rem;
+}
+
+.msg-author {
+  font-weight: 800;
+  color: var(--tw-red);
+}
+
+.msg-content {
+  font-size: 0.92rem;
+  color: var(--text-ink);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   文物彈窗 (Hotspot Modal - 復古古籍典藏外觀)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 25, 17, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeInRetro 0.25s ease;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-dialog {
+  background: var(--bg-card);
+  border: 3px solid var(--border-dark);
+  outline: 4px double var(--border-vintage);
+  border-radius: var(--radius-sm);
+  max-width: 620px;
+  width: 100%;
+  padding: 2.2rem;
+  position: relative;
+  box-shadow: var(--shadow-wood);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-paper-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--wood-brown);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--tw-red);
+  color: #fff;
+  border-color: var(--tw-red-dark);
+}
+
+.modal-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--tw-red-wash);
+  color: var(--tw-red);
+  border: 1px solid var(--tw-red);
+  border-radius: var(--radius-xs);
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: var(--wood-brown);
+  margin-bottom: 1.1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.modal-body-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-ink);
+  margin-bottom: 1.5rem;
+}
+
+.modal-source-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-vintage);
+  padding-top: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   頁尾 (臺灣歷史文獻庫風)
+   ========================================================================== */
+.site-footer {
+  background: #251b12;
+  color: #eedccb;
+  border-top: 3px solid var(--brass-gold);
+  padding: 3.5rem 1.5rem 2.5rem;
+  margin-top: 5rem;
+}
+
+.footer-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.35rem;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  color: #fae4a7;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+}
+
+.footer-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.88rem;
+  color: #bead9b;
+}
+
+.footer-refs a {
+  color: #e5b364;
+  text-decoration: underline;
+}
+
+.footer-refs a:hover {
+  color: #fff;
+}
+
+.footer-copy {
+  font-size: 0.82rem;
+  color: #8c7866;
+}
+
+/* ==========================================================================
+   響應式適配
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-subtitle {
+    border-left: none;
+    padding-left: 0;
+  }
+  .hero-quote-box {
+    text-align: left;
+  }
+  .hero-btn-group {
+    justify-content: center;
+  }
+  .tour-extras-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .nav-tabs {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .tab-btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.88rem;
+  }
+  .timeline-track::before {
+    left: 20px;
+  }
+  .timeline-node {
+    flex-direction: column !important;
+    padding-left: 50px;
+  }
+  .node-bullet {
+    left: 20px;
+  }
+  .node-card {
+    width: 100%;
+  }
+  .stage-narrative-card {
+    margin: 1rem;
+    padding: 1.35rem;
+  }
+  .stage-station-title {
+    font-size: 1.45rem;
+  }
+}
+
+/* 列印專用樣式 */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .vintage-ticket-card, .vintage-ticket-card * {
+    visibility: visible;
+  }
+  .vintage-ticket-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    border: 2px solid #000;
+  }
+}
